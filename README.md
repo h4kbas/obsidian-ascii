@@ -2,6 +2,9 @@
 
 ASCII-only canvas drawing in Obsidian. Draw with characters in a grid: pencil, shapes, fill, brush, spray, word art, selection and move. Files use `.ascii` extension and can be embedded with `![[file.ascii]]`.
 
+<img width="1008" height="544" alt="Screenshot 2026-02-03 at 16 06 16" src="https://github.com/user-attachments/assets/3819813c-568b-4868-8b5d-e0c4650cfcf2" />
+
+
 ## Installation
 
 Install from Community Plugins in Obsidian (Settings → Community plugins → Browse), or copy `main.js`, `manifest.json`, and `styles.css` into your vault's `.obsidian/plugins/ascii-canvas-obsidian/` folder.
