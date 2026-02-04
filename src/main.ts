@@ -14,7 +14,7 @@ function extractAsciiBlock(raw: string): string {
 }
 
 export default class AsciiCanvasPlugin extends Plugin {
-  async onload() {
+  onload() {
     this.registerView(
       VIEW_TYPE_ASCII_CANVAS,
       (leaf: WorkspaceLeaf) => new AsciiCanvasView(leaf, this.app)
@@ -29,7 +29,7 @@ export default class AsciiCanvasPlugin extends Plugin {
         if (!(dest instanceof TFile) || dest.extension !== "ascii") return;
         const filePath = dest.path;
         const sourcePath = ctx.sourcePath;
-        this.app.vault.adapter.read(filePath).then((raw) => {
+        void this.app.vault.adapter.read(filePath).then((raw) => {
           const text = extractAsciiBlock(raw);
           embedEl.empty();
           const wrapper = embedEl.createDiv({ cls: "ascii-canvas-embed-wrapper" });
@@ -38,25 +38,25 @@ export default class AsciiCanvasPlugin extends Plugin {
           const openLink = wrapper.createEl("a", { cls: "ascii-canvas-embed-open" });
           openLink.href = "#";
           openLink.textContent = "Open";
-          openLink.setAttribute("title", "Open in ASCII Canvas");
+          openLink.setAttribute("title", "Open in ascii canvas");
           openLink.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
             this.app.workspace.openLinkText(filePath, sourcePath, false);
           });
-        });
+        }).catch(() => {});
       });
     }, 100);
 
-    this.addRibbonIcon("pencil", "New ASCII canvas", () => this.createNewCanvas());
+    this.addRibbonIcon("pencil", "New ascii canvas", () => this.createNewCanvas());
 
     this.addCommand({
-      id: "ascii-canvas-new",
-      name: "New ASCII canvas",
+      id: "new",
+      name: "New canvas",
       callback: () => this.createNewCanvas(),
     });
     this.addCommand({
-      id: "ascii-canvas-undo",
+      id: "undo",
       name: "Undo",
       checkCallback: (checking: boolean) => {
         const view = this.app.workspace.getActiveViewOfType(AsciiCanvasView);
@@ -68,7 +68,7 @@ export default class AsciiCanvasPlugin extends Plugin {
       },
     });
     this.addCommand({
-      id: "ascii-canvas-redo",
+      id: "redo",
       name: "Redo",
       checkCallback: (checking: boolean) => {
         const view = this.app.workspace.getActiveViewOfType(AsciiCanvasView);

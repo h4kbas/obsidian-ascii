@@ -188,7 +188,7 @@ export class AsciiCanvasView extends ItemView {
     addToolBtn("..", "Spray", "spray");
     addToolBtn("x", "Erase", "erase");
     addToolBtn("[]", "Select", "select");
-    addToolBtn("Aa", "Word Art", "wordart");
+    addToolBtn("Aa", "Word art", "wordart");
     const wordArtWrap = toolbar.createDiv({ cls: "ascii-tool-char-wrap" });
     this.wordArtInput = wordArtWrap.createEl("input", {
       cls: "tool-char tool-wordart",
@@ -227,7 +227,7 @@ export class AsciiCanvasView extends ItemView {
   private registerDeactivateSave(): void {
     this.registerEvent(
       this.app.workspace.on("active-leaf-change", () => {
-        if (this.app.workspace.activeLeaf?.view !== this && this.filePath) {
+        if (this.app.workspace.getActiveViewOfType(AsciiCanvasView) !== this && this.filePath) {
           if (this.saveTimeout !== null) {
             clearTimeout(this.saveTimeout);
             this.saveTimeout = null;
@@ -240,7 +240,7 @@ export class AsciiCanvasView extends ItemView {
 
   private registerKeydown(): void {
     const handler = (e: KeyboardEvent) => {
-      if (this.app.workspace.activeLeaf?.view !== this) return;
+      if (this.app.workspace.getActiveViewOfType(AsciiCanvasView) !== this) return;
       const mod = e.metaKey || e.ctrlKey;
       const key = e.key.toLowerCase();
       if (mod && key === "z") {
@@ -391,7 +391,6 @@ export class AsciiCanvasView extends ItemView {
   private resizeCanvas(newCols: number, newRows: number): void {
     if (newCols === this.cols && newRows === this.rows) return;
     const oldCols = this.cols;
-    const oldRows = this.rows;
     this.cols = newCols;
     this.rows = newRows;
     const newLines: string[] = [];
