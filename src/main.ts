@@ -38,22 +38,22 @@ export default class AsciiCanvasPlugin extends Plugin {
           const openLink = wrapper.createEl("a", { cls: "ascii-canvas-embed-open" });
           openLink.href = "#";
           openLink.textContent = "Open";
-          openLink.setAttribute("title", "Open in ascii canvas");
+          openLink.setAttribute("title", "Open in ASCII canvas");
           openLink.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            this.app.workspace.openLinkText(filePath, sourcePath, false);
+            void this.app.workspace.openLinkText(filePath, sourcePath, false);
           });
         }).catch(() => {});
       });
     }, 100);
 
-    this.addRibbonIcon("pencil", "New ascii canvas", () => this.createNewCanvas());
+    this.addRibbonIcon("pencil", "New ASCII canvas", () => void this.createNewCanvas());
 
     this.addCommand({
       id: "new",
       name: "New canvas",
-      callback: () => this.createNewCanvas(),
+      callback: () => void this.createNewCanvas(),
     });
     this.addCommand({
       id: "undo",

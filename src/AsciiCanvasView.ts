@@ -128,12 +128,12 @@ export class AsciiCanvasView extends ItemView {
     const sizeWrap = toolbar.createDiv({ cls: "ascii-tool-size-wrap" });
     const colsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "Columns" },
+      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "columns" },
     });
     sizeWrap.createSpan({ cls: "ascii-tool-size-sep", text: "x" });
     const rowsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "Rows" },
+      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "rows" },
     });
     const applySize = () => {
       const c = Math.max(MIN_COLS, Math.min(MAX_COLS, parseInt(colsInput.value, 10) || DEFAULT_COLS));
@@ -147,11 +147,11 @@ export class AsciiCanvasView extends ItemView {
     toolbar.createEl("span", { cls: "ascii-tool-sep" });
     const undoBtn = toolbar.createEl("button", { cls: "ascii-tool-btn" });
     undoBtn.createSpan({ cls: "ascii-tool-icon", text: "<-" });
-    undoBtn.setAttribute("title", "Undo");
+    undoBtn.setAttribute("title", "undo");
     undoBtn.addEventListener("click", () => this.undo());
     const redoBtn = toolbar.createEl("button", { cls: "ascii-tool-btn" });
     redoBtn.createSpan({ cls: "ascii-tool-icon", text: "->" });
-    redoBtn.setAttribute("title", "Redo");
+    redoBtn.setAttribute("title", "redo");
     redoBtn.addEventListener("click", () => this.redo());
     toolbar.createEl("span", { cls: "ascii-tool-sep" });
     const charWrap = toolbar.createDiv({ cls: "ascii-tool-char-wrap" });
@@ -177,17 +177,17 @@ export class AsciiCanvasView extends ItemView {
       });
       return btn;
     };
-    const pencilBtn = addToolBtn(".", "Pencil", "pencil");
-    addToolBtn("/", "Line", "line");
-    addToolBtn("#", "Rect", "rect");
-    addToolBtn("<>", "Diamond", "diamond");
-    addToolBtn("()", "Circle", "ellipse");
-    addToolBtn("^", "Triangle", "triangle");
-    addToolBtn("~", "Fill", "fill");
-    addToolBtn("O", "Brush", "brush");
-    addToolBtn("..", "Spray", "spray");
-    addToolBtn("x", "Erase", "erase");
-    addToolBtn("[]", "Select", "select");
+    const pencilBtn = addToolBtn(".", "pencil", "pencil");
+    addToolBtn("/", "line", "line");
+    addToolBtn("#", "rect", "rect");
+    addToolBtn("<>", "diamond", "diamond");
+    addToolBtn("()", "circle", "ellipse");
+    addToolBtn("^", "triangle", "triangle");
+    addToolBtn("~", "fill", "fill");
+    addToolBtn("O", "brush", "brush");
+    addToolBtn("..", "spray", "spray");
+    addToolBtn("x", "erase", "erase");
+    addToolBtn("[]", "select", "select");
     addToolBtn("Aa", "Word art", "wordart");
     const wordArtWrap = toolbar.createDiv({ cls: "ascii-tool-char-wrap" });
     this.wordArtInput = wordArtWrap.createEl("input", {
@@ -197,7 +197,7 @@ export class AsciiCanvasView extends ItemView {
     toolbar.createEl("span", { cls: "ascii-tool-sep" });
     const saveBtn = toolbar.createEl("button", { cls: "ascii-tool-btn" });
     saveBtn.createSpan({ cls: "ascii-tool-icon", text: "[S]" });
-    saveBtn.setAttribute("title", "Save");
+    saveBtn.setAttribute("title", "save");
     saveBtn.addEventListener("click", () => this.flushSave());
     pencilBtn.classList.add("active");
 
@@ -1007,7 +1007,7 @@ export class AsciiCanvasView extends ItemView {
     if (this.saveTimeout !== null) clearTimeout(this.saveTimeout);
     const content = this.getContent();
     this.saveTimeout = setTimeout(() => {
-      this.doSave(content).finally(() => {
+      void this.doSave(content).finally(() => {
         this.saveTimeout = null;
       });
     }, 500);
