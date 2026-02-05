@@ -91,6 +91,6 @@ export default class AsciiCanvasPlugin extends Plugin {
       type: VIEW_TYPE_ASCII_CANVAS,
       state: { file: file.path },
     });
-    this.app.workspace.revealLeaf(leaf);
+    void this.app.workspace.revealLeaf(leaf);
   }
 }

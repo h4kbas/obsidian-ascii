@@ -89,7 +89,7 @@ export class AsciiCanvasView extends ItemView {
   private cols = DEFAULT_COLS;
   private rows = DEFAULT_ROWS;
 
-  constructor(leaf: WorkspaceLeaf, app: App) {
+  constructor(leaf: WorkspaceLeaf, _app: App) {
     super(leaf);
   }
 
@@ -100,9 +100,9 @@ export class AsciiCanvasView extends ItemView {
   getDisplayText(): string {
     if (this.filePath) {
       const f = this.app.vault.getAbstractFileByPath(this.filePath);
-      return f instanceof TFile ? f.name : "ASCII Canvas";
+      return f instanceof TFile ? f.name : "ascii canvas";
     }
-    return "ASCII Canvas";
+    return "ascii canvas";
   }
 
   getState(): { file?: string } {
@@ -128,12 +128,12 @@ export class AsciiCanvasView extends ItemView {
     const sizeWrap = toolbar.createDiv({ cls: "ascii-tool-size-wrap" });
     const colsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "columns" },
+      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "Columns" },
     });
     sizeWrap.createSpan({ cls: "ascii-tool-size-sep", text: "x" });
     const rowsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "rows" },
+      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "Rows" },
     });
     const applySize = () => {
       const c = Math.max(MIN_COLS, Math.min(MAX_COLS, parseInt(colsInput.value, 10) || DEFAULT_COLS));
@@ -147,11 +147,11 @@ export class AsciiCanvasView extends ItemView {
     toolbar.createEl("span", { cls: "ascii-tool-sep" });
     const undoBtn = toolbar.createEl("button", { cls: "ascii-tool-btn" });
     undoBtn.createSpan({ cls: "ascii-tool-icon", text: "<-" });
-    undoBtn.setAttribute("title", "undo");
+    undoBtn.setAttribute("title", "Undo");
     undoBtn.addEventListener("click", () => this.undo());
     const redoBtn = toolbar.createEl("button", { cls: "ascii-tool-btn" });
     redoBtn.createSpan({ cls: "ascii-tool-icon", text: "->" });
-    redoBtn.setAttribute("title", "redo");
+    redoBtn.setAttribute("title", "Redo");
     redoBtn.addEventListener("click", () => this.redo());
     toolbar.createEl("span", { cls: "ascii-tool-sep" });
     const charWrap = toolbar.createDiv({ cls: "ascii-tool-char-wrap" });
@@ -177,17 +177,17 @@ export class AsciiCanvasView extends ItemView {
       });
       return btn;
     };
-    const pencilBtn = addToolBtn(".", "pencil", "pencil");
-    addToolBtn("/", "line", "line");
-    addToolBtn("#", "rect", "rect");
-    addToolBtn("<>", "diamond", "diamond");
-    addToolBtn("()", "circle", "ellipse");
-    addToolBtn("^", "triangle", "triangle");
-    addToolBtn("~", "fill", "fill");
-    addToolBtn("O", "brush", "brush");
-    addToolBtn("..", "spray", "spray");
-    addToolBtn("x", "erase", "erase");
-    addToolBtn("[]", "select", "select");
+    const pencilBtn = addToolBtn(".", "Pencil", "pencil");
+    addToolBtn("/", "Line", "line");
+    addToolBtn("#", "Rect", "rect");
+    addToolBtn("<>", "Diamond", "diamond");
+    addToolBtn("()", "Circle", "ellipse");
+    addToolBtn("^", "Triangle", "triangle");
+    addToolBtn("~", "Fill", "fill");
+    addToolBtn("O", "Brush", "brush");
+    addToolBtn("..", "Spray", "spray");
+    addToolBtn("x", "Erase", "erase");
+    addToolBtn("[]", "Select", "select");
     addToolBtn("Aa", "Word art", "wordart");
     const wordArtWrap = toolbar.createDiv({ cls: "ascii-tool-char-wrap" });
     this.wordArtInput = wordArtWrap.createEl("input", {
@@ -197,7 +197,7 @@ export class AsciiCanvasView extends ItemView {
     toolbar.createEl("span", { cls: "ascii-tool-sep" });
     const saveBtn = toolbar.createEl("button", { cls: "ascii-tool-btn" });
     saveBtn.createSpan({ cls: "ascii-tool-icon", text: "[S]" });
-    saveBtn.setAttribute("title", "save");
+    saveBtn.setAttribute("title", "Save");
     saveBtn.addEventListener("click", () => this.flushSave());
     pencilBtn.classList.add("active");
 
