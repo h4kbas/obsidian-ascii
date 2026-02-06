@@ -128,12 +128,12 @@ export class AsciiCanvasView extends ItemView {
     const sizeWrap = toolbar.createDiv({ cls: "ascii-tool-size-wrap" });
     const colsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "Columns" },
+      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "columns" },
     });
     sizeWrap.createSpan({ cls: "ascii-tool-size-sep", text: "x" });
     const rowsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "Rows" },
+      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "rows" },
     });
     const applySize = () => {
       const c = Math.max(MIN_COLS, Math.min(MAX_COLS, parseInt(colsInput.value, 10) || DEFAULT_COLS));
