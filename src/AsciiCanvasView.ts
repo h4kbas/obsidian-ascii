@@ -100,9 +100,9 @@ export class AsciiCanvasView extends ItemView {
   getDisplayText(): string {
     if (this.filePath) {
       const f = this.app.vault.getAbstractFileByPath(this.filePath);
-      return f instanceof TFile ? f.name : "ascii canvas";
+      return f instanceof TFile ? f.name : "Ascii canvas";
     }
-    return "ascii canvas";
+    return "Ascii canvas";
   }
 
   getState(): { file?: string } {
@@ -128,12 +128,12 @@ export class AsciiCanvasView extends ItemView {
     const sizeWrap = toolbar.createDiv({ cls: "ascii-tool-size-wrap" });
     const colsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "columns" },
+      attr: { type: "number", min: String(MIN_COLS), max: String(MAX_COLS), value: String(this.cols), title: "Columns" },
     });
     sizeWrap.createSpan({ cls: "ascii-tool-size-sep", text: "x" });
     const rowsInput = sizeWrap.createEl("input", {
       cls: "tool-size",
-      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "rows" },
+      attr: { type: "number", min: String(MIN_ROWS), max: String(MAX_ROWS), value: String(this.rows), title: "Rows" },
     });
     const applySize = () => {
       const c = Math.max(MIN_COLS, Math.min(MAX_COLS, parseInt(colsInput.value, 10) || DEFAULT_COLS));
