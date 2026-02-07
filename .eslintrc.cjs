@@ -6,19 +6,10 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: { ecmaVersion: "latest", sourceType: "module", project: "./tsconfig.json" },
   plugins: ["@typescript-eslint"],
-  extends: ["eslint:recommended"],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   rules: {
     "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
   },
-  overrides: [
-    {
-      files: ["**/*.ts"],
-      extends: ["plugin:@typescript-eslint/recommended"],
-      rules: {
-        "@typescript-eslint/no-floating-promises": "error",
-        "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      },
-    },
-  ],
   ignorePatterns: ["node_modules/", "main.js", "obsidian-releases-submit/"],
 };
