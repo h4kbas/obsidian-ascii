@@ -1,0 +1,15 @@
+"use strict";
+
+module.exports = {
+  root: true,
+  env: { browser: true, es2021: true },
+  parser: "@typescript-eslint/parser",
+  parserOptions: { ecmaVersion: "latest", sourceType: "module", project: "./tsconfig.json" },
+  plugins: ["@typescript-eslint"],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  rules: {
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+  },
+  ignorePatterns: ["node_modules/", "main.js", "obsidian-releases-submit/"],
+};

@@ -1,0 +1,12 @@
+node_modules
+main.js
+main.js.map
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.idea
+.vscode
+*.tgz
+obsidian-releases-submit
