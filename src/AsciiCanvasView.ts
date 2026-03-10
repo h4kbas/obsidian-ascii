@@ -100,9 +100,9 @@ export class AsciiCanvasView extends ItemView {
   getDisplayText(): string {
     if (this.filePath) {
       const f = this.app.vault.getAbstractFileByPath(this.filePath);
-      return f instanceof TFile ? f.name : "ascii canvas";
+      return f instanceof TFile ? f.name : "Ascii canvas";
     }
-    return "ascii canvas";
+    return "Ascii canvas";
   }
 
   getState(): { file?: string } {
