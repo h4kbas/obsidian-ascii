@@ -17,7 +17,7 @@ jobs:
       - name: Build plugin
         run: |
           npm ci
-          npm run build
+          node esbuild.config.mjs production
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
