@@ -100,9 +100,9 @@ export class AsciiCanvasView extends ItemView {
   getDisplayText(): string {
     if (this.filePath) {
       const f = this.app.vault.getAbstractFileByPath(this.filePath);
-      return f instanceof TFile ? f.name : "Ascii canvas";
+      return f instanceof TFile ? f.name : "ASCII canvas";
     }
-    return "Ascii canvas";
+    return "ASCII canvas";
   }
 
   getState(): { file?: string } {
@@ -369,7 +369,7 @@ export class AsciiCanvasView extends ItemView {
     const idx = raw.indexOf(fence);
     if (idx === -1) {
       const row = BLANK.repeat(this.cols);
-      return Array(this.rows).fill(row);
+      return Array(this.rows).fill(row) as string[];
     }
     const afterFence = raw.slice(idx + fence.length).replace(/^\r?\n/, "");
     const endIdx = afterFence.indexOf("\n```");
@@ -385,7 +385,7 @@ export class AsciiCanvasView extends ItemView {
 
   private emptyGrid(): string[] {
     const row = BLANK.repeat(this.cols);
-    return Array(this.rows).fill(row);
+    return Array(this.rows).fill(row) as string[];
   }
 
   private resizeCanvas(newCols: number, newRows: number): void {
